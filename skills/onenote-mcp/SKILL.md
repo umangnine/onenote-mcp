@@ -216,7 +216,7 @@ When generating daily work reports or periodic task logs into OneNote, follow th
      </table>
      ```
 7. **Attribution**:
-   - Conclude every report with: `<p><i>Report generated for Umang Kathiyara | Praxinfo</i></p>`.
+   - Conclude every report with: `<p><i>Report generated with OneNote MCP</i></p>`.
 
 ---
 

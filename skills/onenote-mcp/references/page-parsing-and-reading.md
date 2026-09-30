@@ -127,7 +127,7 @@ def parse_onenote_file(one_filepath: Path) -> dict:
     return result
 
 # Example usage:
-backup_file = Path(r"C:\Users\umang\AppData\Local\Microsoft\OneNote\16.0\Backup\Notes-2026\Update-Notes-26.one")
+backup_file = Path(os.environ.get("LOCALAPPDATA", "")) / "Microsoft" / "OneNote" / "16.0" / "Backup" / "Notes" / "Section.one"
 if backup_file.exists():
     data = parse_onenote_file(backup_file)
     print("Found titles:", data["titles"])

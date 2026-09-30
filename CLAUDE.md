@@ -3,7 +3,7 @@
 Refer to [AGENTS.md](file:///D:/www/onenote-mcp/AGENTS.md) for full project architecture, tool reference, and code conventions.
 
 ## Quick Summary
-- **User**: **Umang Kathiyara** (<umangnine@gmail.com>)
+- **User**: [**Umang Kathiyara**](https://github.com/umangnine) (`@umangnine`)
 - **Server**: FastMCP local OneNote server ([server.py](file:///D:/www/onenote-mcp/server.py))
 - **Environment**: Python 3.12+ with `uv` (`uv sync` / `uv run server.py`)
 - **Diagnostics**: `powershell -ExecutionPolicy Bypass -File .\scripts\test_connection.ps1`

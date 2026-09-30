@@ -7,7 +7,7 @@
 
 A high-performance, enterprise-grade **Model Context Protocol (MCP)** server providing AI coding assistants (Google Antigravity, Claude Code, Claude Desktop, Cursor) with full bi-directional integration into **Microsoft OneNote Desktop** on Windows.
 
-> **Author**: **Umang Kathiyara** (<umangnine@gmail.com>) · Praxinfo
+> **Author**: [**Umang Kathiyara**](https://github.com/umangnine) (`@umangnine`)
 
 ---
 
@@ -121,8 +121,8 @@ D:\www\onenote-mcp\
 
 ```powershell
 # 1. Clone the repository
-git clone <your-private-repo-url> D:\www\onenote-mcp
-cd D:\www\onenote-mcp
+git clone https://github.com/umangnine/onenote-mcp.git
+cd onenote-mcp
 
 # 2. Sync virtual environment and dependencies in one step
 uv sync
@@ -132,8 +132,8 @@ uv sync
 
 ```powershell
 # 1. Clone the repository
-git clone <your-private-repo-url> D:\www\onenote-mcp
-cd D:\www\onenote-mcp
+git clone https://github.com/umangnine/onenote-mcp.git
+cd onenote-mcp
 
 # 2. Create virtual environment
 python -m venv .venv
@@ -284,8 +284,8 @@ When sending `content` to `create_page` or `append_to_page`, use standard HTML t
 For consistent engineering notes, sprint logs, and daily work reports:
 
 ```html
-<h2>🔧 QPRO - Backend/API App</h2>
-<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">D:\www\quotation-pro · @umangnine/quotation-pro · branch: development</span></p>
+<h2>🔧 Service Architecture - Backend/API</h2>
+<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">my-project · branch: main</span></p>
 <p><b>2026-09-30 (Wednesday)</b></p>
 <ul>
   <li><b>Feature Area Title:</b>
@@ -304,11 +304,11 @@ For consistent engineering notes, sprint logs, and daily work reports:
 
 <br /><hr /><br />
 
-<h2>🖥️ QPRO Custom Web App</h2>
-<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">D:\www\quotation-pro-custom-web · branch: custom-dev</span></p>
+<h2>🖥️ Frontend Web Application</h2>
+<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">web-client · branch: main</span></p>
 <p><b>2026-09-30 (Wednesday)</b></p>
 <ul>
-  <li><b>Custom UI Polish:</b>
+  <li><b>UI Enhancements:</b>
     <ul>
       <li>Implemented responsive settings drawer</li>
     </ul>
@@ -329,7 +329,7 @@ For consistent engineering notes, sprint logs, and daily work reports:
   <tr><td><b>Repos Active</b></td><td>2</td></tr>
 </table>
 
-<p><i>Report generated for Umang Kathiyara | Praxinfo</i></p>
+<p><i>Report generated with OneNote MCP</i></p>
 ```
 
 ---
@@ -359,6 +359,5 @@ For consistent engineering notes, sprint logs, and daily work reports:
 
 ## 📜 License & Attribution
 
-- **Project Lead & Author**: **Umang Kathiyara** (<umangnine@gmail.com>)
-- **Organization**: Praxinfo
-- **License**: Private & Proprietary
+- **Project Lead & Author**: [**Umang Kathiyara**](https://github.com/umangnine) (`@umangnine`)
+- **License**: [MIT License](LICENSE) — free and open-source for personal and commercial use.

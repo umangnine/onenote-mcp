@@ -291,8 +291,8 @@ Because the stock sanitizer reduces blocks to `<br/>` within a single text block
 <b>📅 DAILY WORK REPORT — Wednesday, 30 September, 2026</b><br>
 <b>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</b><br><br>
 
-<b>🔧 QPRO — BACKEND / API APP</b><br>
-<i>@umangnine/quotation-pro · branch: development</i><br><br>
+<b>🔧 SERVICE ARCHITECTURE — BACKEND / API</b><br>
+<i>my-project · branch: main</i><br><br>
 
 <b>▸ Document Logs Timestamp Canonicalization</b><br>
   • Standardized <b>createdAt</b> timestamp handling across all log models.<br>
@@ -318,7 +318,7 @@ Because the stock sanitizer reduces blocks to `<br/>` within a single text block
 │ Production Status       │ Zero regression; all migrations verified │<br>
 └─────────────────────────┴──────────────────────────────────────────┘<br>
 </span><br>
-<i>Report generated for Umang Kathiyara | Praxinfo</i>
+<i>Report generated with OneNote MCP</i>
 ```
 
 ### Key Techniques for Fallback Formatting:

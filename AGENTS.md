@@ -2,7 +2,7 @@
 
 ## User Identity & Attribution
 - **User Name**: **Umang Kathiyara**
-- **User Email**: umangnine@gmail.com
+- **GitHub**: [@umangnine](https://github.com/umangnine)
 - **Identity Rule**: The user and git commit author is strictly **Umang Kathiyara**. Never refer to, address, or attribute work/commits to 'Umang Patel' or any other name. Always use **Umang Kathiyara**.
 
 ---
