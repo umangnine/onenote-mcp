@@ -7,7 +7,7 @@
 
 A high-performance, enterprise-grade **Model Context Protocol (MCP)** server providing AI coding assistants (Google Antigravity, Claude Code, Claude Desktop, Cursor) with full bi-directional integration into **Microsoft OneNote Desktop** on Windows.
 
-> **Author**: **Umang Kathiyara** (<Umang@Praxinfo.com>) · Praxinfo
+> **Author**: **Umang Kathiyara** (<umangnine@gmail.com>) · Praxinfo
 
 ---
 
@@ -359,6 +359,6 @@ For consistent engineering notes, sprint logs, and daily work reports:
 
 ## 📜 License & Attribution
 
-- **Project Lead & Author**: **Umang Kathiyara** (<Umang@Praxinfo.com>)
+- **Project Lead & Author**: **Umang Kathiyara** (<umangnine@gmail.com>)
 - **Organization**: Praxinfo
 - **License**: Private & Proprietary
