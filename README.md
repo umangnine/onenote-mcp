@@ -62,13 +62,17 @@ The server employs an intelligent **dual-engine architecture** requiring **zero 
 ## 📁 Repository Structure
 
 ```
-D:\www\onenote-mcp\
+onenote-mcp/
 ├── server.py                          # Polished FastMCP OneNote server implementation
 ├── pyproject.toml                     # Modern Python project configuration
 ├── uv.lock                            # Deterministic dependency lockfile
 ├── .python-version                    # Target Python version (3.12)
 ├── .gitignore                         # Git exclusion rules
+├── LICENSE                            # MIT open-source license
 ├── README.md                          # Comprehensive setup & operations guide
+├── SETUP_PROMPT.md                    # One-shot setup prompt for AI coding assistants
+├── setup_mcp.cmd                      # One-click automated setup launcher for Windows
+├── test_connection.cmd                # One-click environment diagnostic launcher
 ├── schemas/                           # MCP tool JSON schema declarations
 │   ├── list_live_notebooks.json
 │   ├── list_live_pages.json
@@ -83,6 +87,7 @@ D:\www\onenote-mcp\
 │   ├── search_notes.json
 │   └── get_notebook_summary.json
 ├── scripts/                           # Standalone PowerShell diagnostic & utility scripts
+│   ├── setup_mcp.ps1                  # Automated setup script (venv, schemas, skills, diagnostics)
 │   ├── test_connection.ps1            # Diagnostic connection probe for COM and backup paths
 │   └── read_onenote_page.ps1          # Standalone CLI reader for live OneNote pages
 └── skills/                            # Agent Skill package for AI assistants
@@ -147,12 +152,44 @@ pip install "mcp[cli]" pyOneNote
 
 ---
 
-## 🧪 Verifying the Environment
+## 🤖 One-Shot AI Agent Setup Prompt (Fastest Setup)
 
-Before connecting to AI assistants, verify your Windows environment using the bundled diagnostics script:
+If you use **Google Antigravity**, **Claude Code**, **Cursor**, or **Windsurf**, you can set up everything in one shot:
+1. Clone this repository to any folder on your Windows machine:
+   ```powershell
+   git clone https://github.com/umangnine/onenote-mcp.git
+   cd onenote-mcp
+   ```
+2. Open your AI coding assistant inside this directory.
+3. Provide the ready-to-use prompt from [**`SETUP_PROMPT.md`**](SETUP_PROMPT.md).
+Your AI agent will automatically create the virtual environment, install dependencies, register the MCP server, copy tool schemas and skills, and run the verification suite.
+
+---
+
+## ⚡ Automated One-Click Setup Script
+
+Prefer running a script directly? We provide an automated setup script that handles environment creation, dependency synchronization, MCP registration, schema installation, and diagnostics:
 
 ```powershell
+# In PowerShell:
+powershell -ExecutionPolicy Bypass -File .\scripts\setup_mcp.ps1
+
+# Or simply double-click / run the Windows batch launcher:
+.\setup_mcp.cmd
+```
+
+---
+
+## 🧪 Verifying the Environment
+
+Verify your OneNote COM automation and backup discovery anytime using the diagnostics tool:
+
+```powershell
+# Option A: PowerShell
 powershell -ExecutionPolicy Bypass -File .\scripts\test_connection.ps1
+
+# Option B: One-click launcher (bypasses PowerShell ExecutionPolicy restrictions)
+.\test_connection.cmd
 ```
 
 **Expected output:**
@@ -175,25 +212,27 @@ Checking OneNote local backup files...
 [OK] Discovered 35 backup (.one) file(s) for offline reading.
 
 ============================================================
-Diagnostics Complete!
+Diagnostics Complete: Environment is 100% HEALTHY! 🎉
 ============================================================
 ```
 
 ---
 
-## ⚙️ Configuring AI Clients
+## ⚙️ Manual Configuration for AI Clients
+
+If you prefer to configure your AI assistant manually rather than using `setup_mcp.cmd`:
 
 ### 1. Google Antigravity IDE
 
-Open `%USERPROFILE%\.gemini\antigravity\mcp_config.json` and register the `onenote` server:
+Open `%USERPROFILE%\.gemini\antigravity\mcp_config.json` and register the `onenote` server (replace `<path-to-repo>` with your absolute directory, e.g. `C:\\Projects\\onenote-mcp`):
 
 ```json
 {
   "mcpServers": {
     "onenote": {
-      "command": "D:\\www\\onenote-mcp\\.venv\\Scripts\\python.exe",
+      "command": "<path-to-repo>\\.venv\\Scripts\\python.exe",
       "args": [
-        "D:\\www\\onenote-mcp\\server.py"
+        "<path-to-repo>\\server.py"
       ],
       "env": {
         "ONENOTE_BACKUP_DIR": "%LOCALAPPDATA%\\Microsoft\\OneNote\\16.0\\Backup"
@@ -203,14 +242,14 @@ Open `%USERPROFILE%\.gemini\antigravity\mcp_config.json` and register the `oneno
 }
 ```
 
-*Tip: Copy the JSON files from `D:\www\onenote-mcp\schemas\` to `%USERPROFILE%\.gemini\antigravity\mcp\onenote\` so the IDE eagerly exposes lazy schemas.*
+*Tip: Copy all JSON files from `.\schemas\` to `%USERPROFILE%\.gemini\antigravity\mcp\onenote\` so the IDE eagerly exposes lazy schemas, and copy `.\skills\onenote-mcp\` to `%USERPROFILE%\.gemini\config\skills\onenote-mcp\`.*
 
 ### 2. Claude Code CLI
 
-Add the server directly from the command line:
+Inside your cloned repository directory, run:
 
 ```powershell
-claude mcp add --transport stdio onenote -- D:\www\onenote-mcp\.venv\Scripts\python.exe D:\www\onenote-mcp\server.py
+claude mcp add --transport stdio onenote -- "$PWD\.venv\Scripts\python.exe" "$PWD\server.py"
 ```
 
 Verify status:
@@ -218,17 +257,17 @@ Verify status:
 claude mcp list
 ```
 
-### 3. Claude Desktop
+### 3. Claude Desktop / Cursor
 
-Edit `%APPDATA%\Claude\claude_desktop_config.json`:
+Edit `%APPDATA%\Claude\claude_desktop_config.json` (or `.cursor/mcp.json`):
 
 ```json
 {
   "mcpServers": {
     "onenote": {
-      "command": "D:\\www\\onenote-mcp\\.venv\\Scripts\\python.exe",
+      "command": "<path-to-repo>\\.venv\\Scripts\\python.exe",
       "args": [
-        "D:\\www\\onenote-mcp\\server.py"
+        "<path-to-repo>\\server.py"
       ],
       "env": {
         "ONENOTE_BACKUP_DIR": "%LOCALAPPDATA%\\Microsoft\\OneNote\\16.0\\Backup"

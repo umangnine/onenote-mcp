@@ -39,12 +39,34 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
+# 0. Force UTF-8 Output Encoding
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 1. Enforce STA (Single-Threaded Apartment) mode
+$aptState = [System.Threading.Thread]::CurrentThread.GetApartmentState()
+if ($aptState -ne "STA") {
+    $sysRoot = if ($env:SystemRoot) { $env:SystemRoot } else { "C:\Windows" }
+    $ps51 = Join-Path $sysRoot "System32\WindowsPowerShell\v1.0\powershell.exe"
+    if (Test-Path $ps51) {
+        & $ps51 -STA -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @args
+        exit $LASTEXITCODE
+    }
+}
+
 $onenote = $null
 try {
     try {
         $onenote = New-Object -ComObject OneNote.Application
     } catch {
-        Write-Error "Could not initialize OneNote COM Application. Ensure Microsoft OneNote desktop is installed."
+        $msg = $_.Exception.Message
+        if ($msg -match "0x80040154") {
+            Write-Error "Microsoft OneNote Desktop is NOT installed. Note: The Store app 'OneNote for Windows 10' does not support COM."
+        } elseif ($msg -match "0x80080005") {
+            Write-Error "OneNote COM server execution failed. Check if a modal dialog or password prompt is open in OneNote Desktop."
+        } else {
+            Write-Error "Could not initialize OneNote COM Application: $msg"
+        }
         exit 1
     }
 

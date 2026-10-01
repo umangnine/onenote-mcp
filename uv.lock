@@ -308,7 +308,7 @@ wheels = [
 ]
 
 [[package]]
-name = "onenote"
+name = "onenote-mcp"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

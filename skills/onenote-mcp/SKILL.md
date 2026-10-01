@@ -152,7 +152,7 @@ To read real-time pages without waiting for OneNote backup cycles, use either:
 
 #### B. Bundled PowerShell Script
 ```powershell
-powershell -STA -NoProfile -ExecutionPolicy Bypass -File "C:\Users\umang\.gemini\config\skills\onenote-mcp\scripts\read_onenote_page.ps1" -Notebook "Notes-2026" -Section "Update-Notes-26" -PageTitle "30 September" -AsMarkdown
+powershell -STA -NoProfile -ExecutionPolicy Bypass -File ".\scripts\read_onenote_page.ps1" -Notebook "Notebook-Name" -Section "Section-Name" -PageTitle "Page Title" -AsMarkdown
 ```
 
 ### Parsing Logic & Cleaning
@@ -177,14 +177,12 @@ When generating daily work reports or periodic task logs into OneNote, follow th
    - **NEVER** write a duplicate `# Title` or `<h1>` heading inside the page body.
 2. **Clean Repository Headings**:
    - Use clean `<h2>` titles for each repository:
-     - `<h2>🔧 QPRO - Backend/API App</h2>`
-     - `<h2>🎨 QPRO Frontend Web App</h2>`
-     - `<h2>🖥️ QPRO Custom Web App</h2>`
-     - `<h2>👨‍💼 QPRO Super Admin App</h2>`
-     - `<h2>⚙️ QPRO - Custom Backend/API App</h2>`
+     - `<h2>🔧 Service Architecture - Backend/API</h2>`
+     - `<h2>🎨 Frontend Web Application</h2>`
+     - `<h2>⚙️ Core Services & Integrations</h2>`
 3. **Repository Subtitles**:
    - Immediately below each `<h2>`, include a subtitle paragraph with repository path and branch in small monospace text:
-     `<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">D:\www\quotation-pro · @umangnine/quotation-pro · branch: development</span></p>`
+     `<p><span style="font-family:Consolas, monospace;font-size:9.5pt;color:#666666;">my-project · branch: main</span></p>`
    - Followed by the date subtitle: `<p><b>YYYY-MM-DD (Day)</b></p>`.
 4. **Dividers Between All Applications**:
    - **MANDATORY**: Between all application blocks and before the Summary Metrics table, place a clear `<br /><hr /><br />` separator to produce an elegant horizontal divider (`──────────────────────────────────────────────────`) with comfortable whitespace.

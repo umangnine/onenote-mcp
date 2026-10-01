@@ -64,11 +64,25 @@ from mcp.server.fastmcp import FastMCP
 # Configuration
 # ---------------------------------------------------------------------------
 
-# Where OneNote stores local backup files.
-# Override with ONENOTE_BACKUP_DIR environment variable if yours is elsewhere.
-DEFAULT_BACKUP_DIR = Path(
-    os.environ.get("APPDATA", ""),
-).parent / "Local" / "Microsoft" / "OneNote" / "16.0" / "Backup"
+def _find_default_backup_dir() -> Path:
+    """Dynamically resolve the OneNote backup directory across Windows editions and users."""
+    local_appdata = os.environ.get("LOCALAPPDATA")
+    if not local_appdata:
+        roaming = os.environ.get("APPDATA", "")
+        local_appdata = str(Path(roaming).parent / "Local") if roaming else ""
+
+    if local_appdata:
+        # Check standard Office versions: 16.0 (2016/2019/2021/365), 15.0 (2013)
+        for ver in ("16.0", "15.0"):
+            candidate = Path(local_appdata) / "Microsoft" / "OneNote" / ver / "Backup"
+            if candidate.exists():
+                return candidate
+        return Path(local_appdata) / "Microsoft" / "OneNote" / "16.0" / "Backup"
+
+    return Path(tempfile.gettempdir())
+
+
+DEFAULT_BACKUP_DIR = _find_default_backup_dir()
 
 ONENOTE_DIR = Path(
     os.environ.get("ONENOTE_BACKUP_DIR", str(DEFAULT_BACKUP_DIR))
@@ -775,16 +789,19 @@ def _html_to_onenote_xml(html_str: str) -> str:
 # ---------------------------------------------------------------------------
 
 
-_SECTION_CACHE: dict[str, str] = {
-    "notes-2026/update-notes-26": "{607EC381-2238-4686-89F1-F86135DFD43A}{1}{B0}"
-}
+_SECTION_CACHE: dict[str, str] = {}
 
 
-POWERSHELL_EXE = (
-    r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-    if os.path.exists(r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe")
-    else "powershell.exe"
-)
+def _find_powershell() -> str:
+    """Locate the Windows PowerShell 5.1 executable to satisfy STA COM requirements."""
+    sys_root = os.environ.get("SystemRoot") or os.environ.get("WINDIR") or r"C:\Windows"
+    candidate = os.path.join(sys_root, "System32", "WindowsPowerShell", "v1.0", "powershell.exe")
+    if os.path.exists(candidate):
+        return candidate
+    return "powershell.exe"
+
+
+POWERSHELL_EXE = _find_powershell()
 
 
 def _cleanup_orphan_onenote() -> None:
